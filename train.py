@@ -45,7 +45,7 @@ class Net(pl.LightningModule):
         vocab_path="vocab/vocab.txt",
         max_length=1024,
         warm_up_steps=0,
-        lr=0.0001,
+        lr=0.0003,
     ):
         super(Net, self).__init__()
         self.batch_size = batch_size
