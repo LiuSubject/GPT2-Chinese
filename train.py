@@ -2,12 +2,10 @@ from transformers import GPT2LMHeadModel, GPT2Config
 from transformers import AdamW, get_linear_schedule_with_warmup, BertTokenizer
 from torch.utils.data import Dataset, DataLoader
 from pytorch_lightning.callbacks import ModelCheckpoint, LearningRateMonitor
-from pytorch_lightning.core.saving import ModelIO
 import pytorch_lightning as pl
 import torch
 import json
 import argparse
-import os
 
 # 11846807
 
@@ -157,7 +155,7 @@ if __name__ == "__main__":
         required=False,
         help="原始训练语料",
     )
-    parser.add_argument("--epochs", default=5, type=int, required=False, help="训练循环")
+    parser.add_argument("--epochs", default=1000, type=int, required=False, help="训练循环")
     parser.add_argument(
         "--batch_size", default=3, type=int, required=False, help="训练batch size"
     )
@@ -169,7 +167,7 @@ if __name__ == "__main__":
         "--max_length", default=1024, type=int, required=False, help="单条文本最长长度"
     )
     parser.add_argument(
-        "--eval_interval", default=100, type=int, required=False, help="eval 步数"
+        "--eval_interval", default=52, type=int, required=False, help="eval 步数"
     )
     parser.add_argument(
         "--val_examples", default=100, type=int, required=False, help="选择多少验证集样本"
@@ -178,12 +176,13 @@ if __name__ == "__main__":
         "--t_total", default=100000, type=int, required=False, help="计划训练多少步"
     )
     parser.add_argument(
-        "--log_step", default=10, type=int, required=False, help="多少步汇报一次loss"
+        "--log_step", default=1, type=int, required=False, help="多少步汇报一次loss"
     )
     parser.add_argument(
         "--output_dir", default="model/", type=str, required=False, help="模型输出路径"
     )
     args = parser.parse_args()
+
     val_examples = args.val_examples
     vocab_path = args.vocab_path
     max_length = args.max_length
@@ -228,4 +227,10 @@ if __name__ == "__main__":
         warm_up_steps=warmup_steps,
         lr=lr,
     )
+    # d = torch.load('output_old/best.ckpt', map_location=torch.device("cpu"))["state_dict"]
+    # d.pop('model.classifier.bias')
+    # d.pop('model.classifier.weight')
+
+    # net.load_state_dict(d, strict=False)
     trainer.fit(net)
+
