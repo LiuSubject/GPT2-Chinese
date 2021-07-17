@@ -155,11 +155,11 @@ if __name__ == "__main__":
         required=False,
         help="原始训练语料",
     )
-    parser.add_argument("--epochs", default=1000, type=int, required=False, help="训练循环")
+    parser.add_argument("--epochs", default=5, type=int, required=False, help="训练循环")
     parser.add_argument(
-        "--batch_size", default=2, type=int, required=False, help="训练batch size"
+        "--batch_size", default=3, type=int, required=False, help="训练batch size"
     )
-    parser.add_argument("--lr", default=0.00015, type=float, required=False, help="学习率")
+    parser.add_argument("--lr", default=0.0003, type=float, required=False, help="学习率")
     parser.add_argument(
         "--warmup_steps", default=2000, type=int, required=False, help="warm up步数"
     )
@@ -176,7 +176,7 @@ if __name__ == "__main__":
         "--t_total", default=100000, type=int, required=False, help="计划训练多少步"
     )
     parser.add_argument(
-        "--log_step", default=1, type=int, required=False, help="多少步汇报一次loss"
+        "--log_step", default=100, type=int, required=False, help="多少步汇报一次loss"
     )
     parser.add_argument(
         "--output_dir", default="model/", type=str, required=False, help="模型输出路径"
