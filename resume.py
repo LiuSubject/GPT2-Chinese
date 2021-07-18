@@ -45,7 +45,7 @@ class Net(pl.LightningModule):
         vocab_path="vocab/vocab.txt",
         max_length=1024,
         warm_up_steps=0,
-        lr=0.0003,
+        lr=0.0001,
     ):
         super(Net, self).__init__()
         self.batch_size = batch_size
@@ -157,7 +157,7 @@ if __name__ == "__main__":
         required=False,
         help="原始训练语料",
     )
-    parser.add_argument("--epochs", default=20, type=int, required=False, help="训练循环")
+    parser.add_argument("--epochs", default=1000, type=int, required=False, help="训练循环")
     parser.add_argument(
         "--batch_size", default=3, type=int, required=False, help="训练batch size"
     )
@@ -178,7 +178,7 @@ if __name__ == "__main__":
         "--t_total", default=100000, type=int, required=False, help="计划训练多少步"
     )
     parser.add_argument(
-        "--log_step", default=10, type=int, required=False, help="多少步汇报一次loss"
+        "--log_step", default=5, type=int, required=False, help="多少步汇报一次loss"
     )
     parser.add_argument(
         "--output_dir", default="model/", type=str, required=False, help="模型输出路径"
