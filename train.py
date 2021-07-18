@@ -11,7 +11,7 @@ import argparse
 
 
 class DS(Dataset):
-    def __init__(self, lines, vocab_path="vocab/vocab.txt", max_length=1024):
+    def __init__(self, lines, vocab_path="vocab/vocab.txt", max_length=512):
         self.data = lines
         self.tok = BertTokenizer(vocab_file=vocab_path)
         self.max_length = max_length
@@ -41,7 +41,7 @@ class Net(pl.LightningModule):
         data_path="data/train.json",
         valid_examples=100,
         vocab_path="vocab/vocab.txt",
-        max_length=1024,
+        max_length=512,
         warm_up_steps=0,
         lr=0.0001,
     ):
@@ -165,7 +165,7 @@ if __name__ == "__main__":
         "--warmup_steps", default=2000, type=int, required=False, help="warm up步数"
     )
     parser.add_argument(
-        "--max_length", default=1024, type=int, required=False, help="单条文本最长长度"
+        "--max_length", default=512, type=int, required=False, help="单条文本最长长度"
     )
     parser.add_argument(
         "--eval_interval", default=100, type=int, required=False, help="eval 步数"
