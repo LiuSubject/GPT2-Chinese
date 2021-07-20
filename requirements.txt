@@ -1,7 +1,7 @@
 transformers==4.2.1
 torch==1.7.1
 torchtext
-torchvision=
+torchvision
 tqdm==4.56.0
 pytorch-lightning==1.3.8
 tensorflow
