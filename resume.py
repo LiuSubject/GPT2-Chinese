@@ -159,7 +159,7 @@ if __name__ == "__main__":
     )
     parser.add_argument("--epochs", default=1000, type=int, required=False, help="训练循环")
     parser.add_argument(
-        "--batch_size", default=5, type=int, required=False, help="训练batch size"
+        "--batch_size", default=4, type=int, required=False, help="训练batch size"
     )
     parser.add_argument("--lr", default=0.0003, type=float, required=False, help="学习率")
     parser.add_argument(
