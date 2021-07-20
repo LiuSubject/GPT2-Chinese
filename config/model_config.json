@@ -3,7 +3,7 @@
   "layer_norm_epsilon": 1e-05,
   "n_ctx": 3072,
   "n_embd": 768,
-  "n_head": 6,
+  "n_head": 8,
   "n_layer": 12,
   "n_positions": 1000,
   "vocab_size": 21128
