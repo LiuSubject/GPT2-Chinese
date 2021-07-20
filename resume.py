@@ -161,7 +161,7 @@ if __name__ == "__main__":
     parser.add_argument(
         "--batch_size", default=3, type=int, required=False, help="训练batch size"
     )
-    parser.add_argument("--lr", default=0.00015, type=float, required=False, help="学习率")
+    parser.add_argument("--lr", default=0.00001, type=float, required=False, help="学习率")
     parser.add_argument(
         "--warmup_steps", default=2000, type=int, required=False, help="warm up步数"
     )
