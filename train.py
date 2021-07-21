@@ -6,6 +6,7 @@ import pytorch_lightning as pl
 import torch
 import json
 import argparse
+import torch.nn as nn
 
 # 11846807
 
@@ -56,6 +57,7 @@ class Net(pl.LightningModule):
         self.model = GPT2LMHeadModel(config=self.config)
         self.data = [line for line in open(data_path)]
         # self.data = [json.loads(line.strip()) for line in open(data_path)]
+        self.dropout = nn.Dropout(0.25)
         self.dataset_train = DS(
             self.data[:-valid_examples], vocab_path=vocab_path, max_length=max_length
         )
@@ -72,7 +74,8 @@ class Net(pl.LightningModule):
             labels=input_ids,
             return_dict=True,
         )
-        return r["loss"]
+        r_dropout = self.dropout(r["loss"])
+        return r_dropout
 
     def train_dataloader(self):
         return DataLoader(
